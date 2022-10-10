@@ -17,7 +17,7 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
+import { mainListItems, secondaryListItems } from './Listitems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
@@ -118,10 +118,10 @@ function DashboardContent() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
+              Invoices
             </Typography>
             <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
+              <Badge badgeContent={4} color="primary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
