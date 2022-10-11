@@ -18,8 +18,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './Listitems';
-import Chart from './Chart';
-import Deposits from './Deposits';
+// import Chart from './Chart';
+// import Deposits from './Deposits';
 import Orders from './Orders';
 
 function Copyright(props) {
@@ -27,7 +27,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Invoicer.com
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -172,7 +172,7 @@ function DashboardContent() {
                     height: 240,
                   }}
                 >
-                  <Chart />
+                  {/* <Chart /> */}
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
@@ -185,7 +185,7 @@ function DashboardContent() {
                     height: 240,
                   }}
                 >
-                  <Deposits />
+                  {/* <Deposits /> */}
                 </Paper>
               </Grid>
               {/* Recent Orders */}
