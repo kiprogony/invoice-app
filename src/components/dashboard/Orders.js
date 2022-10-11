@@ -59,10 +59,12 @@ export default function Orders() {
       <Table size="small">
         <TableHead>
           <TableRow>
+            <TableCell>Order_id</TableCell>
             <TableCell>Date</TableCell>
             <TableCell>Name</TableCell>
-            <TableCell>Ship To</TableCell>
-            <TableCell>Payment Method</TableCell>
+            <TableCell>Destination</TableCell>
+            <TableCell>Items</TableCell>
+            <TableCell>Status</TableCell>
             <TableCell align="right">Sale Amount</TableCell>
           </TableRow>
         </TableHead>
