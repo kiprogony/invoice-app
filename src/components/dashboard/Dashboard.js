@@ -16,6 +16,7 @@ import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import LogoutIcon from '@mui/icons-material/Logout';
 // import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './Listitems';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
@@ -122,9 +123,14 @@ function DashboardContent() {
               Invoices
             </Typography>
             <IconButton color="inherit">
-              <Badge badgeContent={0} color="primary">
+              <Badge badgeContent={0} >
                 <AccountCircleRoundedIcon />
                  {/* <NotificationsIcon /> */}
+              </Badge>
+            </IconButton>
+            <IconButton color="inherit"> 
+              <Badge color="primary">
+                <LogoutIcon />
               </Badge>
             </IconButton>
           </Toolbar>
