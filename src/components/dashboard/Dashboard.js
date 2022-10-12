@@ -16,8 +16,9 @@ import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+// import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './Listitems';
+import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 import Orders from './Orders';
@@ -91,7 +92,7 @@ function DashboardContent() {
 
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', color: "#ce93d8" }}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
           <Toolbar
@@ -121,8 +122,9 @@ function DashboardContent() {
               Invoices
             </Typography>
             <IconButton color="inherit">
-              <Badge badgeContent={4} color="primary">
-                <NotificationsIcon />
+              <Badge badgeContent={0} color="primary">
+                <AccountCircleRoundedIcon />
+                 {/* <NotificationsIcon /> */}
               </Badge>
             </IconButton>
           </Toolbar>
