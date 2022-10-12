@@ -11,29 +11,46 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { purple } from '@mui/material/colors';
 
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: purple,
+  },
+},
+);
 
 
-export default function SignIn() {
+export default function SignIn({onLogin}) {
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch("/signin", {
+    fetch("/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username}),
-    })
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+      body: JSON.stringify({ username, password }),
+    }).then((r) => {
+      setIsLoading(false);
+      if (r.ok) {
+        r.json().then((user) => onLogin(user));
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
     });
-  };
+  }
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
+  // };
 
 
   return (
@@ -72,11 +89,13 @@ export default function SignIn() {
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
                 autoFocus
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
               <TextField
                 margin="normal"
@@ -87,18 +106,21 @@ export default function SignIn() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-              />
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              /> 
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
               <Button
+                color='primary'
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                {isLoading ? "Loading..." : "Login"}
               </Button>
               <Grid container>
                 <Grid item xs>
@@ -111,6 +133,11 @@ export default function SignIn() {
                     {"Not registered yet? Create a new account"}
                   </Link>
                 </Grid>
+                {/* <Grid>
+                   {errors.map((err) => (
+                     <Error key={err}>{err}</Error>
+                    ))}
+                </Grid> */}
               </Grid>
             </Box>
           </Box>  

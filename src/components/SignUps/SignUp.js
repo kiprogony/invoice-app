@@ -5,24 +5,53 @@ import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import { purple } from '@mui/material/colors';
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState  } from 'react';
+// import { OutlinedFlagOutlined } from '@mui/icons-material';
 
+const theme = createTheme({
+  palette: {
+    primary: purple,
+  },
+},
+);
 
-const theme = createTheme();
+export default function SignUp({onLogin}) {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-export default function SignUp() {
-  
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+    setErrors([]);
+    setIsLoading(true);
+    fetch("/Signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        password,
+        email,
+        password_confirmation: passwordConfirmation,
+      }),
+    }).then((res) => {
+      setIsLoading(false);
+      if (res.ok) {
+        res.json().then((user) => onLogin(user));
+      } else {
+        res.json().then((err) => setErrors(err.errors));
+      }
     });
-  };
+  }
 
   return (
     <>
@@ -42,25 +71,17 @@ export default function SignUp() {
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  name="Username"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="username"
+                  value={username}
+                  label="Username"
                   autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -71,6 +92,8 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -82,6 +105,21 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Grid>
+                <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Confirm_Password"
+                  type="password"
+                  id="Confirm_Password"
+                  autoComplete="new-password"
+                  value={passwordConfirmation}
+                  onChange={(e) => setPasswordConfirmation(e.target.value)}
                 />
               </Grid>
             </Grid>
@@ -89,10 +127,10 @@ export default function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              color='success'
+              color='primary'
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              {isLoading ? "Loading..." : "Sign Up"} 
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>

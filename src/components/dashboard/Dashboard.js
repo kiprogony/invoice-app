@@ -23,6 +23,7 @@ import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 import Orders from './Orders';
+import { purple } from '@mui/material/colors';
 
 function Copyright(props) {
   return (
@@ -83,7 +84,11 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const mdTheme = createTheme();
+const mdTheme = createTheme({
+  palette: {
+    primary: purple,
+  },
+});
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
@@ -93,7 +98,7 @@ function DashboardContent() {
 
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: 'flex', color: "#ce93d8" }}>
+      <Box sx={{ display: 'flex', color: "primary" }}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
           <Toolbar
@@ -115,21 +120,21 @@ function DashboardContent() {
             </IconButton>
             <Typography
               component="h1"
-              variant="h6"
+              variant="h3"
               color="inherit"
               noWrap
               sx={{ flexGrow: 1 }}
+              Invoicer
             >
-              Invoices
             </Typography>
             <IconButton color="inherit">
-              <Badge badgeContent={0} >
+              <Badge badgeContent={0} color="primary">
                 <AccountCircleRoundedIcon />
                  {/* <NotificationsIcon /> */}
               </Badge>
             </IconButton>
             <IconButton color="inherit"> 
-              <Badge color="primary">
+              <Badge>
                 <LogoutIcon />
               </Badge>
             </IconButton>
