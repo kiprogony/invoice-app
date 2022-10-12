@@ -21,7 +21,7 @@ export default function SignIn() {
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch("/login", {
+    fetch("/signin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -58,14 +58,14 @@ export default function SignIn() {
           <Box
             sx={{
               my: 8,
-              mx: 4,
-              display: 'flex',
+              mx: 2,
+              display: 'flex-start',
               flexDirection: 'column',
               alignItems: 'center',
             }}
           >
             <Typography component="h1" variant="h5">
-              Sign in
+              Login
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
@@ -108,7 +108,7 @@ export default function SignIn() {
                 </Grid>
                 <Grid item>
                   <Link href="/SignUp" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                    {"Not registered yet? Create a new account"}
                   </Link>
                 </Grid>
               </Grid>
