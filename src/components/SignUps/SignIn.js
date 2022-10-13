@@ -33,7 +33,7 @@ export default function SignIn({onLogin}) {
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch("/login", {
+    fetch("https://afternoon-cliffs-39907.herokuapp.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export default function SignIn({onLogin}) {
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
-        r.json().then((user) => onLogin(user)).then(navigate("/dashboard  "));
+        r.json().then((user) => onLogin(user)).then(navigate("/dashboard"));
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
