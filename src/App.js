@@ -1,10 +1,9 @@
 
 import './App.css';
 import React, { useEffect, useState } from 'react';
-// import Dashboard from './components/dashboard/Dashboard';
 import SignUp from './components/SignUps/SignUp';
 import SignIn from './components/SignUps/SignIn';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Switch, Route, Routes } from "react-router-dom";
 import Dashboard from './components/dashboard/Dashboard';
 import { Login } from '@mui/icons-material';
 
@@ -12,7 +11,7 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("/me").then((r) => {
+    fetch("https://afternoon-cliffs-39907.herokuapp.com/me").then((r) => {
       if (r.ok) {
         r.json().then((user => setUser(user)));
       }
@@ -24,16 +23,17 @@ function App() {
   // } else {
   //   return <Login onlogin={setUser} />;
   // }
-  //   // if (!user) return <Login onLogin={setUser} />;
+    // if (!user) return <Login onLogin={setUser} />;
   return (
     <div className="App">
-     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<SignIn/>} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path='/dashboard' element={<Dashboard />} />
-      </Routes>
-     </BrowserRouter>
+      <Switch>
+        <Routes>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/" element={<SignIn/>} />
+          <Route path="/dashboard" element={<Dashboard/>} />
+        </Routes>
+       
+      </Switch>
     </div>
   );
 }
