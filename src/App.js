@@ -9,21 +9,22 @@ import Dashboard from './components/dashboard/Dashboard';
 import { Login } from '@mui/icons-material';
 
 function App() {
-  // const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
 
-  // useEffect(() => {
-  //   fetch("/me").then((r) => {
-  //     if (r.ok) {
-  //       r.json().then((user => setUser(user)));
-  //     }
-  //   });
-  // }, []);
+  useEffect(() => {
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user => setUser(user)));
+      }
+    });
+  }, []);
 
   // if (user) {   
   //   return <h3>Welcome, {user.username}!</h3>;
   // } else {
   //   return <Login onlogin={setUser} />;
   // }
+  //   // if (!user) return <Login onLogin={setUser} />;
   return (
     <div className="App">
      <BrowserRouter>

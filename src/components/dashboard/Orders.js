@@ -29,10 +29,10 @@ export default function Orders() {
   return (
     <React.Fragment>
       <Title>Recent Orders</Title>
-      <Table size="small">
+      <Table size="medium">
         <TableHead>
-          <TableRow>
-            <TableCell>Order_id</TableCell>
+          <TableRow >
+            <TableCell padding="checkbox">Order_id</TableCell>
             <TableCell>Date</TableCell>
             <TableCell>product_id</TableCell>
             <TableCell>customer_id</TableCell>

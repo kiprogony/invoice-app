@@ -21,7 +21,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { mainListItems, secondaryListItems } from './Listitems';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 // import Chart from './Chart';
-// import Deposits from './Deposits';
+import Deposits from './Deposits';
 import Orders from './Orders';
 import { purple } from '@mui/material/colors';
 
@@ -103,7 +103,7 @@ function DashboardContent() {
         <AppBar position="absolute" open={open}>
           <Toolbar
             sx={{
-              pr: '24px', // keep right padding when drawer closed
+              pr: '24px', 
             }}
           >
             <IconButton
@@ -124,8 +124,8 @@ function DashboardContent() {
               color="inherit"
               noWrap
               sx={{ flexGrow: 1 }}
-              Invoicer
             >
+               Invoicer
             </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={0} color="primary">
@@ -135,7 +135,7 @@ function DashboardContent() {
             </IconButton>
             <IconButton color="inherit"> 
               <Badge>
-                <LogoutIcon />
+                <LogoutIcon  />
               </Badge>
             </IconButton>
           </Toolbar>
@@ -174,9 +174,9 @@ function DashboardContent() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
+            <Grid container spacing={5}>
               {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
+              <Grid item xs={12} md={6} lg={6}>
                 <Paper
                   sx={{
                     p: 2,
@@ -189,7 +189,7 @@ function DashboardContent() {
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
+              <Grid item xs={12} md={6} lg={6}>
                 <Paper
                   sx={{
                     p: 2,
@@ -198,7 +198,7 @@ function DashboardContent() {
                     height: 240,
                   }}
                 >
-                  {/* <Deposits /> */}
+                  <Deposits />
                 </Paper>
               </Grid>
               {/* Recent Orders */}

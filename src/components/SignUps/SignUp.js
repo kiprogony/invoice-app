@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
+import { useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import { purple } from '@mui/material/colors';
+import { indigo } from '@mui/material/colors';
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -15,14 +16,17 @@ import { useState  } from 'react';
 
 const theme = createTheme({
   palette: {
-    primary: purple,
+    primary: indigo,
   },
 },
 );
 
 export default function SignUp({onLogin}) {
+  let navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [errors, setErrors] = useState([]);
@@ -42,16 +46,25 @@ export default function SignUp({onLogin}) {
         password,
         email,
         password_confirmation: passwordConfirmation,
+        image_url: imageUrl,
       }),
-    }).then((res) => {
+    }).then((r) => {
       setIsLoading(false);
-      if (res.ok) {
-        res.json().then((user) => onLogin(user));
+      if (r.ok) {
+        r.json().then((user) => onLogin(user)).then(navigate("/"));
       } else {
-        res.json().then((err) => setErrors(err.errors));
+        r.json().then((err) => setErrors(err.errors));
       }
     });
   }
+  // //     setIsLoading(false);
+  // //     if (res.ok) {
+  // //       res.json().then((user) => onLogin(user));
+  // //     } else {
+  // //       res.json().then((err) => setErrors(err.errors));
+  // //     }
+  // //   });
+  // // }
 
   return (
     <>
@@ -95,6 +108,18 @@ export default function SignUp({onLogin}) {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="image"
+                  label="Image_url"
+                  name="image"
+                  autoComplete="image"
+                  value={imageUrl}
+                  onChange={(e) => setImageUrl(e.target.value)}
+                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField

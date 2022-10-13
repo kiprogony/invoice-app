@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -27,6 +28,8 @@ export default function SignIn({onLogin}) {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  let navigate = useNavigate();
   
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -35,23 +38,17 @@ export default function SignIn({onLogin}) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username, password }),
+       body: JSON.stringify({ username: username, password }),
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
-        r.json().then((user) => onLogin(user));
+        r.json().then((user) => onLogin(user)).then(navigate("/dashboard  "));
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
     });
+    
   }
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-  //     email: data.get('email'),
-  //     password: data.get('password'),
-  //   });
-  // };
-
 
   return (
     <ThemeProvider theme={theme}>
@@ -71,7 +68,7 @@ export default function SignIn({onLogin}) {
             backgroundPosition: 'center',
           }}
         />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid  onSubmit={handleSubmit} item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
             sx={{
               my: 8,
@@ -84,7 +81,7 @@ export default function SignIn({onLogin}) {
             <Typography component="h1" variant="h5">
               Login
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <Box component="form" noValidate  sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
