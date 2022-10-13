@@ -13,6 +13,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { purple } from '@mui/material/colors';
+import Alert from '@mui/material/Alert';
 
 
 const theme = createTheme({
@@ -33,9 +34,10 @@ export default function SignIn({onLogin}) {
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch("https://afternoon-cliffs-39907.herokuapp.com/login", {
+    fetch("https://invoicer-backend.herokuapp.com/login", {
       method: "POST",
       headers: {
+        Accept: 'application/json',
         "Content-Type": "application/json",
       },
        body: JSON.stringify({ username: username, password }),
@@ -132,7 +134,7 @@ export default function SignIn({onLogin}) {
                 </Grid>
                 {/* <Grid>
                    {errors.map((err) => (
-                     <Error key={err}>{err}</Error>
+                     <Alert key={err}>{err}</Alert>
                     ))}
                 </Grid> */}
               </Grid>

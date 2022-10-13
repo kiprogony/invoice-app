@@ -9,9 +9,11 @@ import { Login } from '@mui/icons-material';
 
 function App() {
   const [user, setUser] = useState(null);
+//   const cors = require("cors");
+// app.use(cors());
 
   useEffect(() => {
-    fetch("https://afternoon-cliffs-39907.herokuapp.com/me").then((r) => {
+    fetch("https://invoicer-backend.herokuapp.com/me").then((r) => {
       if (r.ok) {
         r.json().then((user => setUser(user)));
       }
@@ -30,7 +32,7 @@ function App() {
         <Routes>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/" element={<SignIn/>} />
-          <Route path="/dashboard" element={<Dashboard/>} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
        
       </Switch>

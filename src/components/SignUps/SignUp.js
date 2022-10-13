@@ -36,7 +36,7 @@ export default function SignUp({onLogin}) {
     event.preventDefault();
     setErrors([]);
     setIsLoading(true);
-    fetch("/Signup", {
+    fetch("https://invoicer-backend.herokuapp.com/Signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +69,7 @@ export default function SignUp({onLogin}) {
   return (
     <>
      <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container onSubmit={handleSubmit} component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
@@ -82,7 +82,7 @@ export default function SignUp({onLogin}) {
           <Typography component="h1" variant="h5">
             Register
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate  sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -159,7 +159,7 @@ export default function SignUp({onLogin}) {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/SignIn" variant="body2">
+                <Link href="/" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
