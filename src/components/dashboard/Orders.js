@@ -18,7 +18,7 @@ export default function Orders() {
   const [order, setOrder] = useState([])
 
   useEffect(() => {
-    fetch("https://invoicer-backend.herokuapp.com/orders")
+    fetch("/orders")
     .then((res) => res.json())
     .then((data) => {
       setOrder(data);

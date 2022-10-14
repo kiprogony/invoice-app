@@ -32,8 +32,10 @@ function App() {
         <Routes>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/" element={<SignIn/>} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+
         </Routes>
+        <Dashboard />
        
       </Switch>
     </div>

@@ -36,7 +36,7 @@ export default function SignUp({onLogin}) {
     event.preventDefault();
     setErrors([]);
     setIsLoading(true);
-    fetch("https://invoicer-backend.herokuapp.com/Signup", {
+    fetch("/Signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

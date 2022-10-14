@@ -1,11 +1,16 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
+# Getting Started with invoice Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is used by store onwers to keep track of their invoices for the products and services they provide.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+### `git clone {the url to the GitHub repo}`
+
+## cd into the new folder
+
+### `npm install`
+
+## To run the React project
 
 ### `npm start`
 
@@ -69,6 +74,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-=======
 # invoice-app
->>>>>>> 64b71766c5706a08ad5805a6a352be8ab8505fdd
