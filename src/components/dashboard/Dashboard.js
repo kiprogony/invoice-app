@@ -90,11 +90,19 @@ const mdTheme = createTheme({
   },
 });
 
-function DashboardContent() {
+function DashboardContent({user, setUser}) {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
+  function handleLogoutClick() {
+    fetch("/logout", { method: "DELETE" }).then((r) => {
+      if (r.ok) {
+        setUser(null);
+      }
+    });
+  }
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -135,7 +143,7 @@ function DashboardContent() {
             </IconButton>
             <IconButton color="inherit"> 
               <Badge>
-                <LogoutIcon  />
+                <LogoutIcon onClick={handleLogoutClick} />
               </Badge>
             </IconButton>
           </Toolbar>

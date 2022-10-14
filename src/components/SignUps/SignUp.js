@@ -69,7 +69,7 @@ export default function SignUp({onLogin}) {
   return (
     <>
      <ThemeProvider theme={theme}>
-      <Container onSubmit={handleSubmit} component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
@@ -82,7 +82,7 @@ export default function SignUp({onLogin}) {
           <Typography component="h1" variant="h5">
             Register
           </Typography>
-          <Box component="form" noValidate  sx={{ mt: 3 }}>
+          <Box component="form" noValidate  sx={{ mt: 3 }} onSubmit={handleSubmit} >
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
