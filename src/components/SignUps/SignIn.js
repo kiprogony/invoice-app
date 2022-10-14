@@ -34,7 +34,7 @@ export default function SignIn({onLogin}) {
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch("/login", {
+    fetch("https://invoicer-backend.herokuapp.com/login", {
       method: "POST",
       headers: {
         Accept: 'application/json',
