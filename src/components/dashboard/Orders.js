@@ -18,7 +18,7 @@ export default function Orders() {
   const [order, setOrder] = useState([])
 
   useEffect(() => {
-    fetch("/orders")
+    fetch("http://localhost:3000/orders")
     .then((res) => res.json())
     .then((data) => {
       setOrder(data);

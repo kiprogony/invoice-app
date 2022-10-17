@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -13,30 +14,15 @@ import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import LogoutIcon from '@mui/icons-material/Logout';
-// import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './Listitems';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
-// import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import { purple } from '@mui/material/colors';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Invoicer.com
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const drawerWidth = 240;
 
@@ -90,8 +76,8 @@ const mdTheme = createTheme({
   },
 });
 
-function DashboardContent({user, setUser}) {
-  const [open, setOpen] = React.useState(true);
+function Dashboard  ({user, setUser}) {
+  const [open, setOpen] = useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -138,7 +124,6 @@ function DashboardContent({user, setUser}) {
             <IconButton color="inherit">
               <Badge badgeContent={0} color="primary">
                 <AccountCircleRoundedIcon />
-                 {/* <NotificationsIcon /> */}
               </Badge>
             </IconButton>
             <IconButton color="inherit"> 
@@ -193,10 +178,8 @@ function DashboardContent({user, setUser}) {
                     height: 240,
                   }}
                 >
-                  {/* <Chart /> */}
                 </Paper>
               </Grid>
-              {/* Recent Deposits */}
               <Grid item xs={12} md={6} lg={6}>
                 <Paper
                   sx={{
@@ -209,14 +192,12 @@ function DashboardContent({user, setUser}) {
                   <Deposits />
                 </Paper>
               </Grid>
-              {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                   <Orders />
                 </Paper>
               </Grid>
             </Grid>
-            <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>
       </Box>
@@ -224,6 +205,5 @@ function DashboardContent({user, setUser}) {
   );
 }
 
-export default function Dashboard() {
-  return <DashboardContent />;
-}
+
+export default Dashboard;
